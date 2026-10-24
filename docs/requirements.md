@@ -1,13 +1,31 @@
-# B1. Functional Requirements
+# Part B: Requirements and User Stories
 
-1. **FR1.** The system shall allow students to provide information related to their current context.
-2. **FR2.** The system shall classify the student's attention state using a machine learning model.
-3. **FR3.** The system shall display the student's classified attention state.
-4. **FR4.** The system shall identify digital distraction-related situations based on the student's context and attention state.
-5. **FR5.** The system shall provide suitable digital distraction management support based on the student's context and attention state.
+## B1. Functional Requirements
 
-# B2. Non-functional Requirements 
+### FR1 – Collect Study Context
+**The system shall collect relevant information about the student's current study context during a study session.**
 
-1. **NFR1.** The system shall display the attention state classification result within 2 seconds after the required information is provided.
-2. **NFR2.** The system shall provide a simple and easy-to-understand user interface for students.
-3. **NFR3.** The system shall protect student information and prevent unauthorised access.
+### FR2 – Classify Attention State
+**The system shall classify the student's attention state based on the collected study context using a machine learning model.**
+
+### FR3 – Display Attention State
+**The system shall display the classified attention state to the student after the classification process.**
+
+### FR4 – Identify Digital Distraction Situations
+**The system shall identify situations associated with digital distraction based on the student's context and classified attention state.**
+
+### FR5 – Provide Context-Aware Support
+**The system shall provide suitable digital distraction management support based on the student's classified attention state and current context.**
+
+---
+
+## B2. Non-Functional Requirements
+
+### NFR1 – Performance
+**The system shall display the attention-state classification result within 3 seconds after the required context information has been processed.**
+
+### NFR2 – Usability
+**The system shall allow a student to view their current attention state within 2 user interactions from the main study-session interface.**
+
+### NFR3 – Privacy
+**The system shall not collect or store sensitive personal information such as passwords, private messages, or personal communication content for attention-state classification.**
