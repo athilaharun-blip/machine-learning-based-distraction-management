@@ -10,6 +10,7 @@ University students may experience digital distractions while using digital devi
 ## Documents
 - [Problem statement](docs/problem-statement.md)
 - [Requirements](docs/requirements.md)
+- [Specialized Technology](docs/specialized-technology.md)
 - [User stories](docs/user-stories.md)
 - [Sprint log](docs/sprint-log.md)
 
