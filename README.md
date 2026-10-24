@@ -12,6 +12,7 @@ Therefore, a machine learning-based attention state classification system can be
 ## Documents
 - [Problem statement](docs/problem-statement.md)
 - [Requirements](docs/requirements.md)
+- [Specialized Technology](docs/specialized-technology.md)
 - [User stories](docs/user-stories.md)
 - [Sprint log](docs/sprint-log.md)
 
