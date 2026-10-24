@@ -5,7 +5,9 @@ MACHINE LEARNING-BASED ATTENTION STATE CLASSIFICATION FOR CONTEXT-AWARE DIGITAL 
 This project aims to support university students in managing digital distractions and maintaining better focus during study activities.
 
 ## Problem statement
-University students may experience digital distractions while using digital devices for studying, which can affect their ability to maintain focus. Digital activities such as social media, entertainment, and notifications may interrupt their attention during study sessions. However, students may not have a system that can identify their current attention state based on their context and provide suitable support. Therefore, a machine learning-based attention state classification system can be developed to support students in managing digital distractions based on their context and attention state.
+University students may experience digital distractions while using digital devices for studying, which can affect their ability to maintain focus. Digital activities such as social media, entertainment, and notifications may interrupt their attention during study sessions. 
+However, students may not have a system that can identify their current attention state based on their context and provide suitable support. 
+Therefore, a machine learning-based attention state classification system can be developed to support students in managing digital distractions based on their context and attention state.
 
 ## Documents
 - [Problem statement](docs/problem-statement.md)
