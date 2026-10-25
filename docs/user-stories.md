@@ -1,34 +1,45 @@
 # B3. User Stories
 
-## User Story 1 : Monitor Study Content
+## User Stories and Acceptance Criteria
 
-As a university student, I want the system to collect information about my current study context, so that my attention state can be classified based on my study situation.
+## US1 – Enter Study Context
 
-Linked requirements : FR1, FR2
+**User Story:**
 
-Acceptance Criteria :
-- The system allows the required study-context information to be collected during a study session.
-- The collected context is processed by the system for attention-state classification.
-- The system does not require the student to provide unnecessary sensitive personal information.
+As a university student, I want to enter my study-context information after a study session, so that the system can use it to classify my attention state.
 
-## User Story 2 : View Attention State
+**Linked Requirements:** FR1, FR2, NFR3
 
-As a university student, I want to view my classified attention state, so that I can become aware of my current level of focus during a study session.
+**Acceptance Criteria:**
 
-Linked requirement : FR3
+- **AC1:** The student can enter study duration, notification count, application-switch count, and activity type for a study session.
+- **AC2:** After submission, the recorded values are passed to the machine learning model for attention-state classification.
+- **AC3:** The system does not collect or store passwords, private messages, or personal communication content.
 
-Acceptance Criteria :
-- The system displays an attention-state result after the classification process is completed.
-- The student can view the result from the main study-session interface.
-- The classification result is displayed within the required system response time.
+## US2 – View Classified Attention State
 
-## User Story 3 : Manage Digital Distractions
+**User Story:**
 
-As a university student, I want to receive suitable support when digital distraction is identified, so that I can manage distractions and maintain better focus during my study session.
+As a university student, I want to view the classified attention state of my submitted study session, so that I can understand my level of focus during that session.
 
-Linked requirements : FR4, FR5
+**Linked Requirements:** FR2, FR3, NFR1, NFR2
 
-Acceptance Criteria :
-- The system identifies a digital distraction-related situation based on the student's context and attention state.
-- The system provides a suitable support or suggestion based on the identified situation.
-- The support provided does not claim to diagnose, treat, or cure any medical or psychological condition.
+**Acceptance Criteria:**
+
+- **AC1:** The system displays one of three attention states: Focused, Distracted, or Highly Distracted.
+- **AC2:** The student can view the classification result within 2 user interactions from the main study-session screen.
+- **AC3:** The classification result is displayed within 3 seconds after the submitted context data has been processed.
+
+## US3 – Receive Context-Aware Support
+
+**User Story:**
+
+As a university student, I want to receive a suitable suggestion when digital distraction is identified, so that I can manage distractions during future study sessions.
+
+**Linked Requirements:** FR4, FR5
+
+**Acceptance Criteria:**
+
+- **AC1:** The system flags a study session when its classified attention state is Distracted or Highly Distracted.
+- **AC2:** The system displays a distraction-management suggestion that matches the classified attention state.
+- **AC3:** The suggestion focuses on managing digital distractions and does not claim to diagnose or treat screen addiction.
