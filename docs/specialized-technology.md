@@ -1,169 +1,162 @@
 # Part C: Specialized Technology – Machine Learning
 
-## C1. Fundamental Concepts of Machine Learning
+## C1. Fundamental Concepts
 
-### What is Machine Learning?
+### Overview
 
-Machine Learning (ML) is a specialized technology that allows a computer system to learn patterns from data and use those patterns to make predictions or classifications. Instead of manually writing a rule for every possible situation, an ML model learns from examples provided during training.
+The proposed system uses **Supervised Machine Learning** to classify students' attention states based on study-context information. Supervised learning is a machine learning approach in which a model learns patterns from labelled training data and uses those patterns to predict the class of new data.
 
-For this project, **supervised machine learning** is suitable because the system needs to classify a student's attention state into predefined categories. For example, the attention states can be labelled as **Focused, Distracted, or Highly Distracted**. The model can learn the relationship between study-context features and these attention-state labels.
+For this project, students will manually enter information about their completed study sessions. The trained model will classify each session into one of three attention states:
 
-### Key Concepts
+- **Focused:** The student experienced relatively few digital distractions during the study session.
+- **Distracted:** The student experienced some digital distractions that may have affected concentration.
+- **Highly Distracted:** The student experienced frequent digital distractions that may have significantly affected concentration.
 
-**1. Features**
+These labels are proposed categories for the system, not medical diagnoses or direct measurements of attention.
 
-Features are the input information used by the machine learning model. For this project, possible features may include study duration, number of notifications, frequency of switching between applications, and type of activity being performed.
+### Input Features
 
-**2. Labels**
+The proposed machine learning model uses four study-context features:
 
-A label is the expected output that the model learns to predict. In this project, the label represents the student's attention state, such as Focused, Distracted, or Highly Distracted.
+| Feature | Description |
+|---|---|
+| Study Duration | Total duration of the study session in minutes |
+| Notification Count | Number of notifications received during the session |
+| Application-Switch Count | Number of times the student switched between applications |
+| Activity Type | Type of study activity, such as reading, writing, or watching a video lecture |
 
-**3. Training Data**
+### Machine Learning Workflow
 
-Training data contains examples of features together with their known attention-state labels. The ML model uses these examples to learn patterns.
+The proposed workflow consists of two main phases.
 
-**4. Classification**
+**Training Phase**
 
-Classification is a machine learning task where the model assigns an input to one of several predefined categories. Scikit-learn describes classification as identifying which category an object belongs to and provides several classification algorithms.
+1. Collect study-context data.
+2. Assign attention-state labels to the collected data.
+3. Prepare and extract the input features.
+4. Split the labelled dataset into training and testing sets.
+5. Train the supervised machine learning model.
+6. Evaluate the trained model using the test dataset.
 
-**5. Model Evaluation**
+**Prediction Phase**
 
-After training, the model needs to be tested using data that was not used for training. This helps determine whether the model can make correct predictions on unseen data. Scikit-learn provides train/test splitting, cross-validation, and classification metrics for model evaluation.
+1. The student enters study-context information after completing a study session.
+2. The system prepares the four input features.
+3. The trained model predicts the attention state.
+4. The system displays the predicted attention state.
+5. The system provides a suitable context-aware suggestion if digital distraction is identified.
 
-### Basic ML Process
+The training phase is used to develop and evaluate the model, while the prediction phase uses the trained model to classify new study sessions.
 
-The basic process for the proposed project can be represented as:
+### Proposed Training Data
 
-```text
-Student Study Activity
-        ↓
-Collect Study Context
-        ↓
-Extract Features
-        ↓
-Training Data
-        ↓
-Train ML Classification Model
-        ↓
-Test / Evaluate Model
-        ↓
-New Student Context
-        ↓
-Predict Attention State
-        ↓
-Focused / Distracted / Highly Distracted
-        ↓
-Context-Aware Support
-```
+The training dataset will contain study-context information together with attention-state labels. One possible approach is to ask students to self-report their attention level after completing a study session. These labels will be used as the target values for supervised learning.
 
-### Simple Worked Example
+However, self-reported attention levels may be subjective. Therefore, the quality and consistency of the collected labels will need to be considered during model development.
 
-For example, a training dataset could contain:
+### Worked Example
 
-| Study Duration | Notifications | App Switching | Attention State |
-|---|---:|---:|---|
-| 45 minutes | 1 | 0 | Focused |
-| 30 minutes | 5 | 4 | Distracted |
-| 20 minutes | 10 | 8 | Highly Distracted |
-| 50 minutes | 0 | 1 | Focused |
+The following table shows **hypothetical data** to illustrate how the classification process may work.
 
-The model learns patterns from these examples. If a new student has a high number of notifications and frequently switches between applications, the model may classify the student's attention state as **Distracted**.
+| Duration (min) | Notifications | App Switches | Activity | Attention State |
+|---|---|---|---|---|
+| 45 | 1 | 0 | Reading | Focused |
+| 30 | 5 | 4 | Video Lecture | Distracted |
+| 20 | 10 | 8 | Writing | Highly Distracted |
+| 50 | 0 | 1 | Reading | Focused |
 
-The predicted state can then be displayed to the student and used to provide suitable digital distraction management support.
+For example, if a student enters a study duration of 35 minutes, 6 notifications, 5 application switches, and Video Lecture as the activity type, a trained model might classify the session as **Distracted**.
 
----
+This is only an illustrative example. The actual prediction will depend on the collected dataset and the trained model.
 
-## C2. Machine Learning Models and Tools
+### Model Evaluation
 
-### 1. Decision Tree
+The dataset may be divided into training and testing sets using an 80:20 ratio. The training set will be used to train the model, while the test set will be used to evaluate its performance.
 
-A Decision Tree is a supervised learning method that can be used for classification. It makes decisions using a sequence of rules based on input features. For example, a tree could first check whether the number of notifications is high, followed by checking application switching frequency.
+The following evaluation measures may be used:
 
-Decision trees are relatively easy to understand because their decision rules can be visualized. They also require relatively little data preparation compared with some other techniques.
+- **Accuracy:** The proportion of correctly classified study sessions.
+- **Precision:** How many predictions for a particular attention state are correct.
+- **Recall:** How many actual instances of an attention state are correctly identified.
+- **F1-score:** A measure that combines precision and recall.
+- **Confusion Matrix:** A table showing correct and incorrect predictions for each attention state.
 
-**Use in this project:**  
-A Decision Tree can be used to classify a student's attention state based on study-context features.
+The proposed classification accuracy target is at least 70% on an independent test dataset. This is a project target and has not yet been achieved or evaluated.
 
----
+## C2. Frameworks, Models, and Tools
 
-### 2. Random Forest
+Three supervised machine learning algorithms are considered for the proposed system.
 
-Random Forest is an ensemble classification method that combines multiple decision trees. The predictions from the trees are combined to produce the final classification. Scikit-learn describes Random Forest as using multiple decision trees and averaging their predictions to improve predictive accuracy and help control overfitting.
+| Algorithm | Description | Possible Use |
+|---|---|---|
+| Decision Tree | Classifies data using a sequence of decision rules. | Provides an interpretable model for understanding how study-context features influence predictions. |
+| Random Forest | Combines predictions from multiple decision trees. | May improve classification performance and reduce overfitting compared with a single tree. |
+| Logistic Regression | Uses statistical relationships between features and class probabilities. | Provides a baseline model for comparison with tree-based algorithms. |
 
-**Use in this project:**  
-Random Forest can be used to classify attention states when several study-context features are considered together.
+These algorithms are suitable candidates because the proposed dataset contains structured input features and predefined attention-state labels.
 
----
+The following tools may support development:
 
-### 3. Logistic Regression
+- **Python:** Programming language for data processing and machine learning development.
+- **pandas:** Library for organising, cleaning, and preparing study-context datasets.
+- **scikit-learn:** Machine learning library for training, testing, and evaluating classification models.
 
-Logistic Regression is a classification algorithm that can be used to predict class membership based on input features. Scikit-learn provides `LogisticRegression` as a classifier and supports binary as well as multiclass classification in appropriate configurations.
+The algorithms will be compared using evaluation results before selecting the most suitable model. No algorithm is assumed to be the best before testing.
 
-**Use in this project:**  
-Logistic Regression can be used as a simpler classification model and can provide a baseline for comparing its performance with Decision Tree and Random Forest.
-
----
-
-### C3. Fit of Machine Learning to the Problem
-
-Machine Learning is suitable for this project because the main problem involves identifying a student's attention state from patterns in study-context information. The system does not need to rely only on fixed rules. Instead, a supervised ML model can learn from labelled examples and classify new study-context data into predefined attention states.
-
-The proposed approach can therefore connect directly with the requirements:
-
-```text
-FR1: Collect Study Context
-             ↓
-FR2: Classify Attention State
-             ↓
-FR3: Display Attention State
-             ↓
-FR4: Identify Digital Distraction Situation
-             ↓
-FR5: Provide Context-Aware Support
-```
+## C3. Suitability, Benefits, and Limitations
 
 ### Benefits
 
-**1. Pattern-based classification**
+**1. Pattern Recognition**
 
-ML can learn patterns from multiple features instead of relying on one fixed condition. This is useful because digital distraction may occur differently between students and situations.
+Supervised machine learning can identify relationships between study-context features and attention-state labels. This may help the system recognise distraction patterns that are not easily represented by fixed rules.
 
-**2. Multiple models can be compared**
+**2. Personalised Context-Aware Support**
 
-Decision Tree, Random Forest, and Logistic Regression can be trained and evaluated using the same dataset. This allows the project to compare their classification performance before selecting a suitable model.
+The predicted attention state can be used to provide suggestions that match the student's study situation. For example, a session classified as Highly Distracted may receive a suggestion to reduce unnecessary notifications during future study sessions.
 
-**3. Can support context-aware decisions**
+**3. Adaptability**
 
-The classification result can be combined with the student's current context to provide more suitable digital distraction management support.
+The model may be retrained when more suitable labelled data becomes available. This allows the classification approach to be improved based on evaluation results.
 
 ### Limitations and Risks
 
-**1. Data quality and availability**
+**1. Data Quality**
 
-Machine learning depends on suitable training data. If the dataset is too small, inaccurate, or does not represent different student situations, the model may not perform well on new data. Model performance therefore needs to be evaluated using appropriate testing and validation methods.
+The accuracy of the model depends on the quality and amount of labelled training data. A small or unbalanced dataset may affect classification performance.
 
-**2. Bias and fairness**
+**2. Subjective Attention Labels**
 
-If the training data does not represent different types of students and study situations, the model may perform better for some situations than others. NIST identifies fairness and harmful-bias management as important characteristics of trustworthy AI systems.
+If attention states are labelled using student self-reports, different students may interpret their level of focus differently. This may introduce inconsistencies into the training dataset.
 
-**3. Privacy concerns**
+**3. Indirect Measurement**
 
-Student context may involve information about digital-device usage. Collecting unnecessary personal information could create privacy risks. Therefore, the project should follow the privacy limitation already stated in NFR3 and only collect information that is necessary for the intended classification.
+Study duration, notifications, application switching, and activity type do not directly measure a student's actual attention. Therefore, the classification should be treated as an estimate based on study-context information.
 
-### Comparison with an Alternative Approach
+**4. Manual Data Entry and Privacy**
 
-An alternative approach is a **rule-based system**. Instead of learning from data, a rule-based system would use manually defined conditions.
+The proposed system allows students to enter their own study-context information instead of automatically monitoring activities across other applications. This reduces the need for additional device permissions and limits intrusive data collection.
 
-For example:
+However, manually entered information may be inaccurate or incomplete, which could affect the classification results.
 
-```text
-IF notifications > 5
-AND app switching > 5
-THEN attention state = Distracted
-```
+**5. Model Bias and Reliability**
 
-A rule-based approach is simpler and easier to understand, but it requires the developer to manually define the rules. It may also become difficult to maintain when there are many combinations of study contexts.
+If the training dataset does not represent different study habits and activity types, the model may perform less accurately for certain students or study situations.
 
-Machine Learning is therefore selected for this project because the main objective is to **classify attention states from patterns in study-context data**. ML provides a way to learn these patterns from labelled examples rather than relying entirely on manually created rules.
+### Comparison with Rule-Based Classification
 
-However, the ML model should still be evaluated carefully because good training performance does not automatically mean that the model will perform well on unseen data.
+A rule-based system is an alternative approach that classifies attention states using predefined conditions.
+
+| Aspect | Supervised Machine Learning | Rule-Based System |
+|---|---|---|
+| Classification | Learns patterns from labelled data | Uses manually defined rules |
+| Flexibility | Can adapt through retraining | Requires manual rule updates |
+| Data Requirement | Requires labelled training data | Does not require model training |
+| Interpretability | Depends on the selected algorithm | Usually easier to explain |
+| Main Limitation | Sensitive to data quality and model performance | May not handle complex patterns effectively |
+
+A rule-based system would be simpler to develop and test. However, supervised machine learning is selected because the project aims to investigate whether study-context features can be used to classify attention states through learned patterns.
+
+The effectiveness of this approach will depend on the quality of the dataset and the model evaluation results.
+
+Tabassi, E. (2023). *Artificial intelligence risk management framework (AI RMF 1.0)* (NIST AI 100-1). National Institute of Standards and Technology. https://doi.org/10.6028/NIST.AI.100-1
